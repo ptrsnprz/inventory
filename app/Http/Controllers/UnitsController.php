@@ -18,7 +18,7 @@ class UnitsController extends Controller
         return $response;
     }
 
-    public function view($id) {
+    public function show($id) {
         $unit = Unit::find($id);
 
         $response = response()->json([
@@ -44,11 +44,9 @@ class UnitsController extends Controller
     {
         $unit = Unit::find($id);
         $uri = $request->path();
-        //Changes here
-        //Another here
-        return response()->json([
-            'result' => $unit
-        ]);
+        $data = json_decode($request->getContent(), true);
+        
+        return $data;
     }
 
     public function delete($id) {

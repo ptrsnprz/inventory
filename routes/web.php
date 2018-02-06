@@ -19,11 +19,11 @@ Route::get('/about', function () {
     return view('about');
 });
 
-// Units Table
-Route::get('/units', 'UnitsController@index');
+// // Units Table
+// Route::get('/units', 'UnitsController@index');
 
-Route::get('/units/{id}', 'UnitsController@view');
+// Route::get('/units/{id}', 'UnitsController@show');
 
-//To Do Create Route
+// //To Do Create Route
 
-Route::put('/units/{id}', 'UnitsController@update');
+// Route::put('/units/{id}', ['uses' => 'UnitsController@update']);
