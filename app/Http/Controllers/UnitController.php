@@ -20,25 +20,38 @@ class UnitController extends Controller
     public function store(Request $request)
     {
         $unit = $request->isMethod('put') ? Unit::findOrFail($request->unit_id) : new Unit;
-        // if($request->isMethod('put')){
-        //     return new UnitResource(Unit::findOrFail($request->unit_id));
-        // }
-        !empty($request->unit_id) 
-        // $unit->id = $request->unit_id;
-        // $unit->computer_name = $request->computer_name;
-        // $unit->model = $request->model;
-        // $unit->brand = $request->brand;
-        // $unit->hdd = $request->hdd;
-        // $unit->ram = $request->ram;
-        // $unit->processor = $request->processor;
-        // $unit->os = $request->os;        
-        // $unit->mac = $request->mac;
-        // $unit->isdel = $request->isdel;
-        
-        
-        // if($unit->save()){
-        //     return new UnitResource($unit);
-        // }
+        $unit->id = $request->unit_id;
+        if(!empty($request->computer_name)) {
+            $unit->computer_name = $request->computer_name;
+        }
+        if(!empty($request->model)) {
+            $unit->model = $request->model;
+        }
+        if(!empty($request->brand)) {
+            $unit->brand = $request->brand;
+        }
+        if(!empty($request->hdd)) {
+            $unit->hdd = $request->hdd;
+        }
+        if(!empty($request->ram)) {
+            $unit->ram = $request->ram;
+        }
+        if(!empty($request->processor)) {
+            $unit->processor = $request->processor;
+        }
+        if(!empty($request->os)) {
+            $unit->os = $request->os;
+        }
+        if(!empty($request->mac)) {
+            $unit->mac = $request->mac;
+        }
+        if(!empty($request->isdel)) {
+            $unit->isdel = $request->isdel;
+        }
+ 
+        if($unit->save()){
+            return new UnitResource($unit);
+        }
     }
 
     public function show($id)
@@ -48,12 +61,17 @@ class UnitController extends Controller
         return new UnitResource($unit);
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $unit = Unit::findOrFail($id);
+        $unit = $request->isMethod('delete') ? Unit::findOrFail($request->unit_id) : new Unit;
 
-        // if($unit->id){
-            return new UnitResource($unit);
-        // }
+        $unit->id = $request->unit_id;
+        $unit->isdel = 1;
+
+        if($unit->save()){
+            return response()->json([
+                'response' => 'Unit ' . $request->unit_id . ' has been deleted.'
+            ]);
+        } 
     }
 }

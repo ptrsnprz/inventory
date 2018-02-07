@@ -22,6 +22,6 @@ Route::get('units', 'UnitController@index');
 Route::get('units/{id}', 'UnitController@show');
 Route::post('units/', 'UnitController@store');
 Route::put('units/', 'UnitController@store');
-
+Route::delete('units/', 'UnitController@destroy');
 
 

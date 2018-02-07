@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return view('welcome');
 });
@@ -19,11 +21,4 @@ Route::get('/about', function () {
     return view('about');
 });
 
-// // Units Table
-// Route::get('/units', 'UnitsController@index');
 
-// Route::get('/units/{id}', 'UnitsController@show');
-
-// //To Do Create Route
-
-// Route::put('/units/{id}', ['uses' => 'UnitsController@update']);
