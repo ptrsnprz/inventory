@@ -57,6 +57,12 @@ class UnitController extends Controller
     public function show($id)
     {
         $unit = Unit::findOrFail($id);
+        
+        if($unit->isdel == 1){
+            return response()->json([
+                'response' => 'Unit '. $id . ' is not existing.'
+            ]);
+        }
 
         return new UnitResource($unit);
     }
